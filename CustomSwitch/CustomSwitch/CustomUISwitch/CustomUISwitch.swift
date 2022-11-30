@@ -175,6 +175,11 @@ extension CustomUISwitch {
         
         self.thumbView.backgroundColor = self.thumbTintColor
         self.thumbView.isUserInteractionEnabled = false
+        self.thumbView.layer.shadowColor = UIColor.black.cgColor
+        self.thumbView.layer.shadowRadius = 1.5
+        self.thumbView.layer.shadowOpacity = 0.4
+        self.thumbView.layer.shadowOffset = CGSize(width: 0.75, height: 2)
+        
         self.gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
         self.gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
         
