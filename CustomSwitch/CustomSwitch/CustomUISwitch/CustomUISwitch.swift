@@ -128,6 +128,18 @@ public class CustomUISwitch: UIControl {
         }
     }
     
+    var onThumbColor: UIColor = .white {
+        didSet{
+            self.setupUI()
+        }
+    }
+    
+    var offThumbColor: UIColor = .white{
+        didSet{
+            self.setupUI()
+        }
+    }
+    
     var labelOff: UILabel = UILabel()
     var labelOn: UILabel = UILabel()
     var areLabelsShown: Bool = false {
@@ -142,8 +154,8 @@ public class CustomUISwitch: UIControl {
     
     fileprivate var thumbView = CustomThumbView(frame: CGRect.zero)
     
-    fileprivate var onImageView = UIImageView(frame: CGRect.zero)
-    fileprivate var offImageView = UIImageView(frame: CGRect.zero)
+    var onImageView = UIImageView(frame: CGRect.zero)
+    var offImageView = UIImageView(frame: CGRect.zero)
     
     fileprivate var onPoint = CGPoint.zero
     fileprivate var offPoint = CGPoint.zero
@@ -173,18 +185,18 @@ extension CustomUISwitch {
         
         self.clipsToBounds = false
         
-        self.thumbView.backgroundColor = self.thumbTintColor
+        self.thumbView.backgroundColor = self.isOn ? self.onThumbColor : self.offThumbColor
         self.thumbView.isUserInteractionEnabled = false
         self.thumbView.layer.shadowColor = UIColor.black.cgColor
         self.thumbView.layer.shadowRadius = 1.5
-        self.thumbView.layer.shadowOpacity = 0.4
+        self.thumbView.layer.shadowOpacity = 0.2
         self.thumbView.layer.shadowOffset = CGSize(width: 0.75, height: 2)
         
         self.gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
         self.gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
         
         self.backgroundColor = self.isOn ? self.onTintColor : self.offTintColor
-        
+    
         self.addSubview(self.thumbView)
         self.addSubview(self.onImageView)
         self.addSubview(self.offImageView)
@@ -224,6 +236,7 @@ extension CustomUISwitch {
     
     private func setupViewsOnAction() {
         self.thumbView.frame.origin.x = self.isOn ? self.onPoint.x : self.offPoint.x
+        self.thumbView.backgroundColor = self.isOn ? self.onThumbColor : self.offThumbColor
         self.backgroundColor = self.isOn ? self.onTintColor : self.offTintColor
         self.gradientLayer.colors = self.isOn ? self.onGradientTintColor : self.offGradientTintColor
         
@@ -264,6 +277,7 @@ extension CustomUISwitch {
             
             self.thumbView.frame = CGRect(origin: self.isOn ? self.onPoint : self.offPoint, size: thumbSize)
             self.thumbView.layer.cornerRadius = thumbSize.height * self.thumbCornerRadius
+            self.thumbView.backgroundColor = self.isOn ? self.onThumbColor : self.offThumbColor
             
             //label frame
             if self.areLabelsShown {
@@ -350,8 +364,8 @@ extension CustomUISwitch {
         self.labelOff.textColor = UIColor.white
         
         self.labelOff.sizeToFit()
-        self.labelOff.text = "Off"
-        self.labelOn.text = "On"
+        self.labelOff.text = "OFF"
+        self.labelOn.text = "ON"
         self.labelOff.textAlignment = .center
         self.labelOn.textAlignment = .center
         
