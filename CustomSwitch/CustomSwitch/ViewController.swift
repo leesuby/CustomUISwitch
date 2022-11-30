@@ -32,6 +32,16 @@ class ViewController: UIViewController {
         customSwitch.offGradientTintColor = [grayLeft,grayRight]
         customSwitch.isGradient = true
         
+        let onLabel = UILabel()
+        onLabel.text = "ON"
+        onLabel.textColor = .white
+        
+        let offLabel = UILabel()
+        offLabel.text = "OFF"
+        offLabel.textColor = .white
+        customSwitch.labelOn = onLabel
+        customSwitch.labelOff = offLabel
+        
         customSwitch.areLabelsShown = true
         
         return customSwitch
@@ -69,7 +79,16 @@ class ViewController: UIViewController {
         customSwitch.thumbTintColor = UIColor.white
         customSwitch.animationDuration = 1.0
         customSwitch.thumbSize = CGSize(width: 100, height: 48)
+        let lightLabel = UILabel()
+        lightLabel.text = "Light"
+        lightLabel.textColor = .white
         
+        let darkLabel = UILabel()
+        darkLabel.text = "Dark"
+        darkLabel.textColor = .black
+        customSwitch.labelOn = lightLabel
+        customSwitch.labelOff = darkLabel
+        customSwitch.areLabelsShown = true
         return customSwitch
     }()
     

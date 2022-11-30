@@ -140,8 +140,17 @@ public class CustomUISwitch: UIControl {
         }
     }
     
-    var labelOff: UILabel = UILabel()
-    var labelOn: UILabel = UILabel()
+    var labelOff: UILabel = UILabel(){
+        didSet{
+            self.setupUI()
+        }
+    }
+    
+    var labelOn: UILabel = UILabel(){
+        didSet{
+            self.setupUI()
+        }
+    }
     var areLabelsShown: Bool = false {
         didSet {
             self.setupUI()
@@ -360,12 +369,12 @@ extension CustomUISwitch {
         self.labelOff.frame = CGRect(x: self.frame.width - labelWidth, y: 0, width: labelWidth, height: self.frame.height)
         self.labelOn.font = UIFont.boldSystemFont(ofSize: 12)
         self.labelOff.font = UIFont.boldSystemFont(ofSize: 12)
-        self.labelOn.textColor = UIColor.white
-        self.labelOff.textColor = UIColor.white
+//        self.labelOn.textColor = UIColor.white
+//        self.labelOff.textColor = UIColor.white
         
         self.labelOff.sizeToFit()
-        self.labelOff.text = "OFF"
-        self.labelOn.text = "ON"
+//        self.labelOff.text = "OFF"
+//        self.labelOn.text = "ON"
         self.labelOff.textAlignment = .center
         self.labelOn.textAlignment = .center
         
